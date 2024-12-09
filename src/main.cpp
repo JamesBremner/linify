@@ -169,10 +169,10 @@ void cGUI::draw(wex::shapes &S)
     {
         std::vector<int> vl
         {
-            10 + thebox[0] * ( l.first.x - thebox[1] ),
-            10 + thebox[0] * ( l.first.y - thebox[2] ),
-            10 + thebox[0] * ( l.second.x - thebox[1] ),
-            10 + thebox[0] * ( l.second.y - thebox[2] )
+            (int)(10 + thebox[0] * ( l.first.x - thebox[1] )),
+            (int)(10 + thebox[0] * ( l.first.y - thebox[2] )),
+            (int)(10 + thebox[0] * ( l.second.x - thebox[1] )),
+            (int)(10 + thebox[0] * ( l.second.y - thebox[2] ))
         };
         S.line(vl);
 
