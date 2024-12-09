@@ -2,9 +2,8 @@
 VPATH = ./src 
 
 	# compiler include search paths
-INCS = -I./include \
+INCS = \
 	-I../windex/include \
-	-I../raven-set \
 
 LIBS = \
 	-lgdiplus -lgdi32 -lcomdlg32 -lstdc++fs \

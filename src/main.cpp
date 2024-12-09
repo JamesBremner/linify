@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <wex.h>
 #include "cStarterGUI.h"
-#include "cxy.h"
 
 struct cLinify
 {
