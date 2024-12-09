@@ -26,7 +26,7 @@ struct cLinify
 
     bool test();
 
-    std::vector<cxy>& getPoints()
+    std::vector<cxy> &getPoints()
     {
         return myPoints;
     }
@@ -57,19 +57,15 @@ void cLinify::solve()
 {
 
     cxy lp1, lp2;
+    lp1 = myPoints[0];
+    lp2 = myPoints[1];
 
-    for (int k = 0; k < myPoints.size() - 2; k++)
+    for (int k = 1; k < myPoints.size() - 2; k++)
     {
-        if( k == 0 )
-        {
-            lp1 = myPoints[0];
-            lp2 = myPoints[1];
-            continue;
-        }
-        if (isLine(myPoints[k-1], myPoints[k], myPoints[k + 1]))
+        if (isLine(myPoints[k - 1], myPoints[k], myPoints[k + 1]))
         {
             // extend line
-            lp2 = myPoints[k+1];
+            lp2 = myPoints[k + 1];
         }
         else
         {
@@ -83,7 +79,8 @@ void cLinify::solve()
 
 void cLinify::displayLines()
 {
-    for (auto &l : myLines) {
+    for (auto &l : myLines)
+    {
         std::cout
             << "( " << l.first.x << ", " << l.first.y
             << " ) to ( " << l.second.x << ", " << l.second.y
@@ -116,8 +113,8 @@ std::vector<double> cLinify::box()
         ret.push_back(yscale);
     else
         ret.push_back(xscale);
-    ret.push_back( topleft.x);
-    ret.push_back( topleft.y);
+    ret.push_back(topleft.x);
+    ret.push_back(topleft.y);
 
     return ret;
 }
@@ -158,26 +155,22 @@ void cGUI::draw(wex::shapes &S)
 {
     auto thebox = myLinify.box();
     S.color(0);
-    for( auto& p : myLinify.getPoints() )
+    for (auto &p : myLinify.getPoints())
     {
-        int x = 10 + thebox[0] * ( p.x - thebox[1] );
-        int y = 10 + thebox[0] * ( p.y - thebox[2] );
-        S.circle( x, y, 5 );
+        int x = 10 + thebox[0] * (p.x - thebox[1]);
+        int y = 10 + thebox[0] * (p.y - thebox[2]);
+        S.circle(x, y, 5);
     }
     S.color(0x0000FF);
-    for( auto& l : myLinify.getLines())
+    for (auto &l : myLinify.getLines())
     {
-        std::vector<int> vl
-        {
-            (int)(10 + thebox[0] * ( l.first.x - thebox[1] )),
-            (int)(10 + thebox[0] * ( l.first.y - thebox[2] )),
-            (int)(10 + thebox[0] * ( l.second.x - thebox[1] )),
-            (int)(10 + thebox[0] * ( l.second.y - thebox[2] ))
-        };
+        std::vector<int> vl{
+            (int)(10 + thebox[0] * (l.first.x - thebox[1])),
+            (int)(10 + thebox[0] * (l.first.y - thebox[2])),
+            (int)(10 + thebox[0] * (l.second.x - thebox[1])),
+            (int)(10 + thebox[0] * (l.second.y - thebox[2]))};
         S.line(vl);
-
     }
-
 }
 
 main()
